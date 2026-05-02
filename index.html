@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CYBERWORLD — Киберспорт Әлемі</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-trail" id="cursorTrail"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+  <div class="container-fluid px-4">
+    <a class="navbar-brand" href="#">
+      <span class="brand-bracket">[</span>CYBER<span class="brand-accent">WORLD</span><span class="brand-bracket">]</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="#hero">БАСТЫ</a></li>
+        <li class="nav-item"><a class="nav-link" href="#games">ОЙЫНДАР</a></li>
+        <li class="nav-item"><a class="nav-link" href="#teams">КОМАНДАЛАР</a></li>
+        <li class="nav-item"><a class="nav-link" href="#tournaments">ТУРНИРЛЕР</a></li>
+        <li class="nav-item"><a class="nav-link" href="#ai-image">AI ВИЗУАЛ</a></li>
+        <li class="nav-item"><a class="nav-link" href="#agent">ЖАҢАЛЫҚТАР</a></li>
+        <li class="nav-item"><a class="nav-link" href="#table">РЕЙТИНГ</a></li>
+        <li class="nav-item"><a class="nav-link" href="#music">МУЗЫКА</a></li>
+        <li class="nav-item"><a class="nav-link" href="#chatbot">ЧАТ-БОТ</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero" class="hero-section">
+  <canvas id="matrixCanvas"></canvas>
+  <div class="hero-scan-line"></div>
+  <div class="container hero-content text-center">
+    <div class="glitch-wrap">
+      <div class="hero-eyebrow">// ҚАЗАҚСТАН КИБЕРСПОРТ ПЛАТФОРМАСЫ</div>
+      <h1 class="hero-title glitch" data-text="CYBERWORLD">CYBERWORLD</h1>
+      <div class="hero-sub">КИБЕРСПОРТ <span class="typed-text" id="typedText"></span></div>
+    </div>
+    <div class="hero-stats-row">
+      <div class="hstat"><span class="hnum" data-count="48">0</span><span>+</span><div>Ойын түрі</div></div>
+      <div class="hstat-sep">://</div>
+      <div class="hstat"><span class="hnum" data-count="320">0</span><span>+</span><div>Команда</div></div>
+      <div class="hstat-sep">://</div>
+      <div class="hstat"><span class="hnum" data-count="2400">0</span><span>+</span><div>Турнир</div></div>
+      <div class="hstat-sep">://</div>
+      <div class="hstat"><span class="hnum" data-count="99">0</span><span>%</span><div>Нәтижелілік</div></div>
+    </div>
+    <div class="hero-cta-row">
+      <a href="#games" class="btn-cta primary">ОЙЫНДАРДЫ КӨРУ</a>
+      <a href="#chatbot" class="btn-cta outline">AI КЕҢ ЕСШІ</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-bar"></div>
+    <span>SCROLL</span>
+  </div>
+</section>
+
+<!-- GAMES SECTION -->
+<section id="games" class="sec-block">
+  <div class="container">
+    <div class="sec-label">01 — ОЙЫН ТҮРЛЕРІ</div>
+    <h2 class="sec-title">Танымал<br><span>Киберспорт Ойындары</span></h2>
+    <p class="sec-desc">Дүние жүзінде миллиондаған ойыншылары бар үздік ойындар</p>
+    <div class="games-filter">
+      <button class="filter-btn active" onclick="filterGames('all', this)">БАРЛЫҒЫ</button>
+      <button class="filter-btn" onclick="filterGames('fps', this)">FPS</button>
+      <button class="filter-btn" onclick="filterGames('moba', this)">MOBA</button>
+      <button class="filter-btn" onclick="filterGames('battle', this)">BATTLE ROYALE</button>
+      <button class="filter-btn" onclick="filterGames('strategy', this)">СТРАТЕГИЯ</button>
+      <button class="filter-btn" onclick="filterGames('fighting', this)">ЖЕКПЕ-ЖЕК</button>
+    </div>
+    <div class="games-grid" id="gamesGrid"></div>
+  </div>
+</section>
+
+<!-- TEAMS SECTION -->
+<section id="teams" class="sec-block sec-dark">
+  <div class="container">
+    <div class="sec-label">02 — КОМАНДАЛАР</div>
+    <h2 class="sec-title light">Үздік<br><span>Командалар</span></h2>
+    <p class="sec-desc light">Қазақстан мен әлемдегі топ командалар</p>
+    <div class="teams-grid" id="teamsGrid"></div>
+  </div>
+</section>
+
+<!-- TOURNAMENTS -->
+<section id="tournaments" class="sec-block">
+  <div class="container">
+    <div class="sec-label">03 — ТУРНИРЛЕР</div>
+    <h2 class="sec-title">Үлкен<br><span>Турнирлер</span></h2>
+    <div class="tournaments-list" id="tournamentsList"></div>
+  </div>
+</section>
+
+<!-- AI IMAGE -->
+<section id="ai-image" class="sec-block sec-dark">
+  <div class="container">
+    <div class="sec-label">04 — AI СУРЕТ ГЕНЕРАЦИЯСЫ</div>
+    <h2 class="sec-title light">Киберспорт<br><span>Визуал Жасау</span></h2>
+    <p class="sec-desc light">DALL-E 3 арқылы киберспорт тематикалы суреттер генерациялаңыз</p>
+    <div class="ai-panel">
+      <div class="prompt-chips">
+        <span class="chip" onclick="setP('CS2 про ойыншы турнирде')">🎯 CS2 Турнир</span>
+        <span class="chip" onclick="setP('Dota 2 команда жарысы')">⚔️ Dota 2</span>
+        <span class="chip" onclick="setP('League of Legends арена')">🏆 LoL Арена</span>
+        <span class="chip" onclick="setP('киберспорт стадион жарық')">🏟️ Стадион</span>
+        <span class="chip" onclick="setP('gaming setup neon lights')">💻 Gaming Setup</span>
+        <span class="chip" onclick="setP('esports trophy winner')">🥇 Чемпион</span>
+      </div>
+      <div class="prompt-row">
+        <input type="text" id="imgPrompt" class="p-input" placeholder="Сипаттама жазыңыз... мысалы: 'киберспортшы турнирде жеңіске жетіп жатыр'">
+        <button class="btn-gen" onclick="generateImage()"><span>✦</span> ГЕНЕРАЦИЯЛАУ</button>
+      </div>
+      <div id="imgResult" class="img-result">
+        <div class="img-ph"><div class="ph-icon">🎮</div><p>Сурет осында пайда болады</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI AGENT NEWS -->
+<section id="agent" class="sec-block">
+  <div class="container">
+    <div class="sec-label">05 — AI АГЕНТ</div>
+    <h2 class="sec-title">Соңғы<br><span>Ойын Жаңалықтары</span></h2>
+    <p class="sec-desc">AI агент нақты уақытта киберспорт жаңалықтарын жинайды</p>
+    <div class="agent-box">
+      <div class="agent-tabs">
+        <button class="atab active" onclick="loadNews('breaking', this)">🔴 СОҢҒЫ</button>
+        <button class="atab" onclick="loadNews('tournaments', this)">🏆 ТУРНИРЛЕР</button>
+        <button class="atab" onclick="loadNews('transfers', this)">🔄 ТРАНСФЕР</button>
+        <button class="atab" onclick="loadNews('games', this)">🎮 ОЙЫНДАР</button>
+        <button class="atab" onclick="loadNews('kz', this)">🇰🇿 ҚАЗ АҚПАР</button>
+      </div>
+      <div class="agent-body">
+        <div id="agentLoader" class="a-loader" style="display:none">
+          <div class="a-dots"><span></span><span></span><span></span><span></span></div>
+          <p>AI агент жаңалықтарды жинап жатыр...</p>
+        </div>
+        <div id="agentOut"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DYNAMIC TABLE -->
+<section id="table" class="sec-block sec-dark">
+  <div class="container">
+    <div class="sec-label">06 — ДИНАМИКАЛЫҚ КЕСТЕ</div>
+    <h2 class="sec-title light">Ойыншы<br><span>Рейтинг Кестесі</span></h2>
+    <div class="table-box">
+      <div class="table-top">
+        <div class="table-form">
+          <input type="text" id="tNick" class="t-input" placeholder="Ник / Username">
+          <input type="text" id="tGame" class="t-input" placeholder="Ойын">
+          <input type="text" id="tCountry" class="t-input small" placeholder="Ел">
+          <input type="number" id="tRating" class="t-input small" placeholder="Рейтинг">
+          <input type="number" id="tWins" class="t-input small" placeholder="Жеңіс">
+          <select id="tRole" class="t-select">
+            <option>Carry</option><option>Support</option><option>IGL</option>
+            <option>Sniper</option><option>Entry</option><option>AWPer</option>
+          </select>
+          <button class="btn-add" onclick="addPlayer()">+ ҚОСУ</button>
+        </div>
+        <div class="table-actions">
+          <button class="t-act" onclick="sortPlayers()">⇅ Рейтинг</button>
+          <button class="t-act" onclick="filterTop5()">🏆 ТОП 5</button>
+          <button class="t-act" onclick="resetFilter()">↺ Барлығы</button>
+          <button class="t-act danger" onclick="clearPlayers()">✕ Тазалау</button>
+        </div>
+      </div>
+      <div class="t-wrapper">
+        <table id="playerTable">
+          <thead>
+            <tr><th>#</th><th>НИК</th><th>ОЙЫН</th><th>ЕЛ</th><th>РЕЙТИНГ</th><th>ЖЕҢІС</th><th>РӨЛЬ</th><th>ДЕҢГЕЙ</th><th>ӘРЕКЕТ</th></tr>
+          </thead>
+          <tbody id="tBody"></tbody>
+        </table>
+      </div>
+      <div class="t-summary" id="tSummary"></div>
+    </div>
+  </div>
+</section>
+
+<!-- AI MUSIC -->
+<section id="music" class="sec-block">
+  <div class="container">
+    <div class="sec-label">07 — AI МУЗЫКА</div>
+    <h2 class="sec-title">Gaming<br><span>Саундтрек</span></h2>
+    <p class="sec-desc">Suno AI арқылы жасалған киберспорт атмосферасы</p>
+    <div class="music-wrap">
+      <div class="music-player">
+        <div class="eq-visual" id="eqVisual">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="now-playing">
+          <div class="now-emoji" id="nowEmoji">🎮</div>
+          <div>
+            <div class="now-track" id="nowTrack">Cyber Arena</div>
+            <div class="now-artist" id="nowArtist">Suno AI • Gaming Mix</div>
+          </div>
+        </div>
+        <div class="p-controls">
+          <button class="p-btn" onclick="prevT()">⏮</button>
+          <button class="p-btn play" id="playBtn" onclick="togglePlay()">▶</button>
+          <button class="p-btn" onclick="nextT()">⏭</button>
+          <button class="p-btn" onclick="toggleShuffle()" id="shuffleBtn" title="Кездейсоқ">⇄</button>
+        </div>
+        <div class="p-progress">
+          <span class="p-time" id="curTime">0:00</span>
+          <div class="p-bar" onclick="seekT(event)"><div class="p-fill" id="pFill"></div></div>
+          <span class="p-time" id="totTime">3:30</span>
+        </div>
+        <audio id="audio" onended="nextT()" ontimeupdate="updateP()" onloadedmetadata="updateD()">
+          <source src="media/music.mp3" type="audio/mp3">
+        </audio>
+      </div>
+      <div class="playlist" id="playlist"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CHATBOT -->
+<section id="chatbot" class="sec-block sec-dark">
+  <div class="container">
+    <div class="sec-label">08 — ЧАТ-БОТ</div>
+    <h2 class="sec-title light">AI<br><span>Ойын Кеңесшісі</span></h2>
+    <p class="sec-desc light">Кез келген ойын, киберспорт, команда туралы сұрақ қойыңыз</p>
+    <div class="chat-wrap">
+      <div class="chat-head">
+        <div class="chat-av">🤖</div>
+        <div>
+          <div class="chat-name">CyberBot AI</div>
+          <div class="chat-status"><span class="dot-online"></span> Онлайн — Барлық ойындар бойынша</div>
+        </div>
+        <button class="chat-clr" onclick="clearChat()">⟳ Тазалау</button>
+      </div>
+      <div id="chatBox" class="chat-body"></div>
+      <div class="chat-chips">
+        <span class="c-chip" onclick="qs('CS2 туралы не білесің?')">CS2</span>
+        <span class="c-chip" onclick="qs('Dota 2 ең жақсы герой?')">Dota 2</span>
+        <span class="c-chip" onclick="qs('League of Legends қалай ойналады?')">LoL</span>
+        <span class="c-chip" onclick="qs('Valorant агенттері?')">Valorant</span>
+        <span class="c-chip" onclick="qs('Қазақстандық киберспортшылар кімдер?')">🇰🇿 KZ Pro</span>
+        <span class="c-chip" onclick="qs('Киберспортшы болу үшін не керек?')">Про болу</span>
+      </div>
+      <div class="chat-foot">
+        <input type="text" id="chatIn" class="chat-input" placeholder="Ойын туралы сұрақ жазыңыз..." onkeypress="if(event.key==='Enter')sendMsg()">
+        <button class="chat-send" onclick="sendMsg()">➤</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI TOOLS -->
+<section class="sec-block">
+  <div class="container">
+    <div class="sec-label">09 — ҚОЛДАНЫЛҒАН AI ҚҰРАЛДАРЫ</div>
+    <h2 class="sec-title">Технология<br><span>Стек</span></h2>
+    <div class="tech-stack">
+      <div class="tech-card"><div class="tc-icon">🎨</div><div class="tc-name">DALL-E 3</div><div class="tc-desc">Киберспорт суреттер генерациясы</div></div>
+      <div class="tech-card"><div class="tc-icon">🎵</div><div class="tc-name">Suno AI</div><div class="tc-desc">Gaming саундтрек жасау</div></div>
+      <div class="tech-card"><div class="tc-icon">🤖</div><div class="tc-name">HeyGen</div><div class="tc-desc">AI жаттықтырушы аватар</div></div>
+      <div class="tech-card"><div class="tc-icon">💬</div><div class="tc-name">ChatGPT API</div><div class="tc-desc">Ойындар бойынша чат-бот</div></div>
+      <div class="tech-card"><div class="tc-icon">📡</div><div class="tc-name">News API</div><div class="tc-desc">Нақты уақыт жаңалықтары</div></div>
+      <div class="tech-card"><div class="tc-icon">🎬</div><div class="tc-name">Runway ML</div><div class="tc-desc">Анимация және видео</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container text-center">
+    <div class="footer-logo">[CYBERWORLD]</div>
+    <p>Киберспорт Әлемі • AI Жобасы • 2025-2026</p>
+    <p style="opacity:.4;font-size:.75rem;margin-top:4px">DALL-E 3 • Suno AI • HeyGen • ChatGPT • Runway ML • Bootstrap 5</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="script.js"></script>
+<script src="players.js"></script>
+</body>
+</html>
